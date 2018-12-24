@@ -1,0 +1,30 @@
+arch n64.cpu
+endian msb
+fill 1984
+
+output OneSecondLoop.bin, create
+
+origin $00000000
+base $1FC00000
+	include "../LIB/N64_UTE.INC"
+Start:
+
+
+fixed_gap(Start, 0x0600)
+	beq r0, r0, Start
+	nop
+	break
+
+TheEnd:
+fixed_gap(Start, 0x0640)
+origin internal_test_data
+align(8)
+dw 0x12345678
+middle:
+dw 0x90123456
+dw 0x78901234
+origin external_test_name
+db "One Second Loop"
+origin external_test_steps
+//instructionCount(TheEnd)
+dw 0x59682F0
