@@ -1,4 +1,4 @@
-N64/MIPS Unit Test Emulation
+# N64/MIPS Unit Test Emulation
 
 Most programming languages support 'native' Unit Tests. The down side
 is that they are language specific, the goal here is to test the 
@@ -6,55 +6,53 @@ emulation from inside the emulation.
 
 This series of test programs perform many tests that build off each other. 
 
-	The Emulator developer must make just a couple of minimal 
-code changes to accommodate the tests. Primarily support a 
-slightly custom version of the SYSCALL instruction. 
+The Emulator developer must make just a couple of minimal code changes to 
+accommodate the tests. Primarily support a slightly custom version of the 
+SYSCALL instruction. 
 
-	Since we are operating "inside" the machine we take just a
-couple of liberties. Instead of one big "code" value. Parse the
-SYSCALL instruction as a Register Type. The following values are
-then available.
+Since we are operating "inside" the machine we take just a couple of liberties. 
+Instead of one big "code" value. Parse the SYSCALL instruction as a Register 
+Type. The following values are then available.
 
-	RS = Reserved
-	RT = P or F for Pass or Fail
-		"Encoded" +64 to convert to an ASCII value or test
-		as is for 16 = Pass and 6 = Fail
-	RD = Test Set i.e. "0.MIPS_I_TestTheTest.bin" is #0
-	SA = Test Number inside the Program
+* RS = MIPS ISA (i.e. 1, 2, 3, 4 aka I, II, III, IV)
+* RT = P or F for Pass or Fail
+  * The value for P is 16 and F is 6 
+  * +64 to convert to an ASCII value or test	
+* RD = Test Set i.e. "0.MIPS_I_TestTheTest.bin" is #0
+* SA = Test Number inside the Program  
 The SYSCALL instruction is encoded like this.
-	(0b000000, rs, rt, rd, sa, 0b001100)
+> (0b000000, rs, rt, rd, sa, 0b001100)
 	
-Only the rs, rt, rd, sa values are provided, you can format however you would like.
-Example of possible output:
-	Test Result - Set:0  Test:1  Result:Fail
-	Test Result - Set:0  Test:2  Result:P
+Only the actual values of rs, rt, rd, sa are provided, you can format however you would like.
+Example of possible output:  
+> Test Result - MIPS ISA:1 Set:0  Test:1  Result:Fail  
+> Test Result - MIPS ISA:1 Set:0  Test:2  Result:P  
 
 Notes for all Tests!
-	1. The following are all FAILing test conditions
-		1. Failure message
-		2. Missing Sequence numbers
-		3. Both Pass and Fail are displayed	
-	2. Most instructions will be tested in multiple phases
-		once other features are verified. (i.e. Load/Save)
-	3. Each Test program has a maximum of 400 instructions or 31 tests.
-	4. Because of Looping it's possible to run for much longer than
-		400 instructions.
+1. The following are all FAILing test conditions
+   1. Failure message
+   2. Missing Sequence numbers
+   3. Both Pass and Fail are displayed	
+2. Most instructions will be tested in multiple phases once other features are verified.
+3. Each Test program has a maximum of 400 instructions or 31 tests.
+4. Because of Looping it's possible to run for much longer than 400 instructions.
 	
 The UTE64 PIF ROM format has a couple of "extra" features.	
-	All ROM locations 0x1FC00640 - 0x1FC007BF RESERVED
-	Memory location 0x1FC00640 to 0x1FC006FF is for storing internal test data
-	Memory location 0x1FC00700 to 0x1FC007BF is for data that can be read by the emulator
-		Memory[0x1FC00700] location there is a 31 byte null terminated name.		
-		Memory[0x1FC007BC] location there is a 4 byte value that defines 
-			how many CPU cycles to execute. 
+> * All ROM locations 0x1FC00640 - 0x1FC007BF RESERVED
+> * Memory location 0x1FC00640 to 0x1FC006FF is for storing internal test data
+> * Memory location 0x1FC00700 to 0x1FC007BF is for data that can be read by the emulator
+> *	Memory[0x1FC00700] location there is a 31 byte null terminated name.		
+> *	Memory[0x1FC007BC] location there is a 4 byte value that defines 
+> *			how many CPU cycles to execute. 
 
-	Example:
-	uint instructionCount = Memory[0x1FC007BC, 4].SwapBytesToUInt();
-	for (int idx = 0; idx < instructionCount; idx++)
-	{
-		Step();
-		PC += 4;
-	}
+```
+Example:
+uint instructionCount = Memory[0x1FC007BC, 4].SwapBytesToUInt();
+for (int idx = 0; idx < instructionCount; idx++)
+{
+	Step();
+	PC += 4;
+}```
 
 The remaining challenge is to "bootstrap" accurate tests.
 	Each test set is for one MIPS ISA, using only verified instructions. The 
