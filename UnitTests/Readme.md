@@ -28,6 +28,23 @@ Example of possible output:
 > Test Result - MIPS ISA:1 Set:0  Test:1  Result:Fail  
 > Test Result - MIPS ISA:1 Set:0  Test:2  Result:P  
 
+### Implementation of the SYSCALL
+Just in case the above sounds like a lot of complexity, here is my implementation in C#.  
+Hint: It's mostly about displaying the instructions parsed values
+```
+case OpCodeAll.SYSCALL:
+	if (instruction.SA > 0)
+	{
+		string resultText = (instruction.RT == 16) ? "P" : "Fail";
+		Console.WriteLine("Test Result - ISA:{0}  Set:{1,2:##}  Test:{2,2:##}  Result:{3}", instruction.RS, instruction.RD, instruction.SA, resultText);
+	}
+	else
+	{
+		// Standard SYSCALL behavior
+	}
+break;
+```
+
 Notes for all Tests!
 1. The following are all FAILing test conditions
    1. Failure message
