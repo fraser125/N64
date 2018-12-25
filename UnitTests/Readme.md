@@ -80,45 +80,39 @@ The final step for PIF code to run is verifying the Environment:
 8. Environment_PIF.bin
 	
 ## "Test The Tests"
-	Code is only as accurate and reliable as it's tests. These first tests are 
-very simple and slowly build on each other. The later tests may still fluctuate
-but the explanation below would be similar for all of the tests in this series.
+> Code is only as accurate and reliable as it's tests.  
 
-Instructions Tested
-	These instructions will receive additional testing later, but
-this is a good start for testing.
-		syscall
-		nop
-		beq
-		addi 
+These first tests are very simple and slowly build on each other. The later tests and
+their sequence may change but the explanation below would be similar for all of the 
+tests in this series.
+
+###Instructions Tested:  
+These instructions will receive additional testing later, but these are required for testing.
+* syscall
+* nop
+* beq
+* addi 
 		
-Test Cases
-	0. FailNOP - gotta make sure it works.
-		This is the only time you want to see the failure message
-	1. GoodNOP - gotta make sure it works.
-		Hope you see a lot more of these in your future.
-	2. beq true
-		Executes syscall for pass or failure
-	3. beq false
-		Executes syscall for pass or failure
+Test Cases  
+0. FailNOP - confirm it works. Only time you want to see a failure  
+1. GoodNOP - confirm it works. Hopefully a lot more of these in the future.  
+2. beq true - Executes syscall for pass or failure  
+3. beq false - Executes syscall for pass or failure  
 			
 Expected Test results (based on example above):
-	Test Result - Set:1  Test:1  Result:Fail
-	Test Result - Set:1  Test:2  Result:P
-	Test Result - Set:1  Test:3  Result:P
-	Test Result - Set:1  Test:4  Result:P
-	(Continued...)
+> Test Result - MIPS ISA:1 Set:1  Test:1  Result:Fail  
+> Test Result - MIPS ISA:1 Set:1  Test:2  Result:P  
+> Test Result - MIPS ISA:1 Set:1  Test:3  Result:P  
+> Test Result - MIPS ISA:1 Set:1  Test:4  Result:P  
+> 	(Continued...)  
 			
-Additional Comments on certain instructions:
-	MULT and DIV instructions take more than 1 cycle, Cycle count is tested later
-	MTHI, MFHI, MTLO and MFLO needed for mult and div, the 'To' instructions aren't common
-	Some tests will also require the Delay slot must be implemented.
-	All GPR registers are assumed unsigned 64-bit r0 - ra nothing fancy 
+Instruction Specific Comments:
+* MULT and DIV instructions take more than 1 cycle, Cycle count is tested later
+* MTHI, MFHI, MTLO and MFLO needed for mult and div, the 'To' instructions aren't common
+* Some tests will also require the Delay slot must be implemented.
+* All GPR registers are assumed unsigned 64-bit r0 - ra nothing fancy 
 		(r0 and ra will be tested more later)
-	All COP0 registers are assumed unsigned 64-bit nothing fancy.
+* All COP0 registers are assumed unsigned 64-bit nothing fancy.
 
-These tests will also include environment and advanced feature tests to verify Registers 
-and Memory ranges for reading and writing as well as Cache and TLB features and more.
-	PIF from 0x1FC00000
-	RSP from 0xA4001000
-	VR4300 from 0x80000000
+These tests will eventually include environment and advanced feature tests to verify 
+registers and memory ranges for reading and writing as well as Cache and TLB features and more.
