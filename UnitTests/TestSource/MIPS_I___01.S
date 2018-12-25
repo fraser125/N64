@@ -6,11 +6,11 @@
 	beq t0, t1, good1
 	nop
 bad1:
-	syscallUTE(1, 1, 'F')
+	syscallUTE(1, 1, 1, 'F')
 	b continue2
 	nop
 good1:
-	syscallUTE(1, 1, 'P')
+	syscallUTE(1, 1, 1, 'P')
 continue2:
 
 //# Test mtlo and mflo
@@ -20,9 +20,9 @@ continue2:
 	beq t0, t1, good2
 	nop
 bad2:
-	syscallUTE(1, 2, 'F')
+	syscallUTE(1, 1, 2, 'F')
 good2:
-	syscallUTE(1, 2, 'P')
+	syscallUTE(1, 1, 2, 'P')
 
 //# Test add
 	addi t0, r0, 7
@@ -32,9 +32,9 @@ good2:
 	beq t0, t3, good3
 	nop
 bad3:
-	syscallUTE(1, 3, 'F')
+	syscallUTE(1, 1, 3, 'F')
 good3:
-	syscallUTE(1, 3, 'P')
+	syscallUTE(1, 1, 3, 'P')
 
 //# Test addu
 	addi t0, r0, 7
@@ -44,9 +44,9 @@ good3:
 	beq t0, t3, good4
 	nop
 bad4:
-	syscallUTE(1, 4, 'F')
+	syscallUTE(1, 1, 4, 'F')
 good4:
-	syscallUTE(1, 4, 'P')
+	syscallUTE(1, 1, 4, 'P')
 
 //# Test srl
 	lui t0, 0x000F
@@ -55,9 +55,9 @@ good4:
 	beq t0, t1, good5
 	nop
 bad5:
-	syscallUTE(1, 5, 'F')
+	syscallUTE(1, 1, 5, 'F')
 good5:
-	syscallUTE(1, 5, 'P')
+	syscallUTE(1, 1, 5, 'P')
 	
 //# Test or
 	addi t0, r0, 0x0333
@@ -67,9 +67,9 @@ good5:
 	beq t0, t2, good6
 	nop
 bad6:
-	syscallUTE(1, 6, 'F')
+	syscallUTE(1, 1, 6, 'F')
 good6:
-	syscallUTE(1, 6, 'P')
+	syscallUTE(1, 1, 6, 'P')
 	
 //# Test mtc0 and mfc0
 	addi t0, r0, 0x10
@@ -78,11 +78,11 @@ good6:
 	beq t0, t1, good7
 	nop
 bad7:
-	syscallUTE(1, 7, 'F')
+	syscallUTE(1, 1, 7, 'F')
 	b continue8
 	nop
 good7:
-	syscallUTE(1, 7, 'P')
+	syscallUTE(1, 1, 7, 'P')
 continue8:
 	
 //# Test lui
@@ -93,11 +93,11 @@ continue8:
 	beq t0, t1, good8
 	nop
 bad8:
-	syscallUTE(1, 8, 'F')
+	syscallUTE(1, 1, 8, 'F')
 	beq r0, r0, continue9
 	nop
 good8:
-	syscallUTE(1, 8, 'P')
+	syscallUTE(1, 1, 8, 'P')
 continue9:
 
 //# Test ori
@@ -107,11 +107,11 @@ continue9:
 	beq t1, t2, good9
 	nop
 bad9:
-	syscallUTE(1, 9, 'F')
+	syscallUTE(1, 1, 9, 'F')
 	beq r0, r0, continue10
 	nop
 good9:
-	syscallUTE(1, 9, 'P')
+	syscallUTE(1, 1, 9, 'P')
 continue10:
 
 //# Test lw
@@ -121,11 +121,11 @@ continue10:
 	beq t1, t2, good10
 	nop
 bad10:
-	syscallUTE(1, 10, 'F')
+	syscallUTE(1, 1, 10, 'F')
 	beq r0, r0, continue11
 	nop
 good10:
-	syscallUTE(1, 10, 'P')
+	syscallUTE(1, 1, 10, 'P')
 continue11:
 
 //# Test andi
@@ -135,11 +135,11 @@ continue11:
 	beq t1, t2, good11
 	nop
 bad11:
-	syscallUTE(1, 11, 'F')
+	syscallUTE(1, 1, 11, 'F')
 	beq r0, r0, continue12
 	nop
 good11:
-	syscallUTE(1, 11, 'P')
+	syscallUTE(1, 1, 11, 'P')
 continue12:
 
 //# Test mthi and mfhi
@@ -149,20 +149,20 @@ continue12:
 	beq t0, t1, good12
 	nop
 bad12:
-	syscallUTE(1, 12, 'F')
+	syscallUTE(1, 1, 12, 'F')
 	b continue13
 	nop
 good12:
-	syscallUTE(1, 12, 'P')
+	syscallUTE(1, 1, 12, 'P')
 continue13:
 
 	la ra, good13
 	jr ra
 	nop
 bad13:
-	syscallUTE(1, 13, 'F')
+	syscallUTE(1, 1, 13, 'F')
 good13:
-	syscallUTE(1, 13, 'P')
+	syscallUTE(1, 1, 13, 'P')
 
 
 //# Test sw
@@ -177,28 +177,28 @@ good13:
 	beq t0, t2, good14
 	nop
 bad14:
-	syscallUTE(1, 14, 'F')
+	syscallUTE(1, 1, 14, 'F')
 	beq r0, r0, continue15
 	nop
 good14:
-	syscallUTE(1, 14, 'P')
+	syscallUTE(1, 1, 14, 'P')
 	beq r0, r0, continue15
 	nop
 	
 // Test 15 and 16 jump and link destination
 destination15:
-	syscallUTE(1, 15, 'P')	
+	syscallUTE(1, 1, 15, 'P')	
 	jr ra
 	nop
 continue15:	
 	jal destination15
 	nop		
 good15:
-	syscallUTE(1, 16, 'P')	
+	syscallUTE(1, 1, 16, 'P')	
 	beq r0, r0, continue16
 	nop
 bad15:
-	syscallUTE(1, 16, 'F')	
+	syscallUTE(1, 1, 16, 'F')	
 continue16:
 
 //# Test bne True
@@ -206,28 +206,28 @@ continue16:
 	bne t0, r0, good17
 	nop
 bad17:
-	syscallUTE(1, 17, 'F')
+	syscallUTE(1, 1, 17, 'F')
 good17:
-	syscallUTE(1, 17, 'P')
+	syscallUTE(1, 1, 17, 'P')
 
 //# Test bne False
 	bne r0, r0, bad18
 	nop
 good18:
-	syscallUTE(1, 18, 'P')
+	syscallUTE(1, 1, 18, 'P')
 	b continue18
 	nop
 bad18:
-	syscallUTE(1, 18, 'F')
+	syscallUTE(1, 1, 18, 'F')
 continue18:
 	
 //# Test jr
 	la t0, destination19
 	jr t0
 	nop
-	syscallUTE(1, 19, 'F')
+	syscallUTE(1, 1, 19, 'F')
 destination19:
-	syscallUTE(1, 19, 'P')
+	syscallUTE(1, 1, 19, 'P')
 
 //# Test ori always 0 extended	ushort
 	li t0, 0x0F00F000
@@ -236,9 +236,9 @@ destination19:
 	beq t1, t2, good20
 	nop
 bad20:
-	syscallUTE(1, 20, 'F')
+	syscallUTE(1, 1, 20, 'F')
 good20:
-	syscallUTE(1, 20, 'P')
+	syscallUTE(1, 1, 20, 'P')
 	
 //# Test andi always 0 extended	ushort
 	li t0, 0x0F007000
@@ -247,9 +247,9 @@ good20:
 	beq t1, t2, good21
 	nop
 bad21:
-	syscallUTE(1, 21, 'F')
+	syscallUTE(1, 1, 21, 'F')
 good21:
-	syscallUTE(1, 21, 'P')
+	syscallUTE(1, 1, 21, 'P')
 continue22:
 
 //# Test lui lower 16 bits are zer0
@@ -258,27 +258,27 @@ continue22:
 	beq t1, r0, good22
 	nop
 bad22:
-	syscallUTE(1, 22, 'F')
+	syscallUTE(1, 1, 22, 'F')
 	b continue23
 	nop
 good22:
-	syscallUTE(1, 22, 'P')
+	syscallUTE(1, 1, 22, 'P')
 	b continue23
 	nop
 
 //# Test bgezal True + Negative Offset
 destination23:
-	syscallUTE(1, 24, 'P')
+	syscallUTE(1, 1, 24, 'P')
 	jr ra
 	nop
 continue23:
 	addi t0, r0, 1
 	bgezal t0, destination23
-	syscallUTE(1, 23, 'P')
-	syscallUTE(1, 25, 'P')
+	syscallUTE(1, 1, 23, 'P')
+	syscallUTE(1, 1, 25, 'P')
 	b continue25
 	nop
-	syscallUTE(1, 25, 'F')
+	syscallUTE(1, 1, 25, 'F')
 	
 continue25:
 	

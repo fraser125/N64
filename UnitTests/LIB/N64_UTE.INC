@@ -350,12 +350,12 @@ macro syscall() {
 	dw 0xC	
 }
 
-macro syscallUTE(series, test, pORf) {
+macro syscallUTE(isa, series, test, pORf) {
 	// rs = reserved
 	// rt = {pORf} letter P or F
 	// rd = {series} test Program Index
 	// sa = {test} test number
-	dw ({pORf}-64) << 16 | {series} << 11 | {test} << 6 | 0xC
+	dw ({isa} << 21 | {pORf}-64 << 16 | {series} << 11 | {test} << 6 | 0xC)
 	// 000000 00000 10000 00010 10001 001100
 }
 
