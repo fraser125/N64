@@ -38,12 +38,11 @@ Notes for all Tests!
 4. Because of Looping it's possible to run for much longer than 400 instructions.
 	
 The UTE64 PIF ROM format has a couple of "extra" features.	
-> * All ROM locations 0x1FC00640 - 0x1FC007BF RESERVED
-> * Memory location 0x1FC00640 to 0x1FC006FF is for storing internal test data
-> * Memory location 0x1FC00700 to 0x1FC007BF is for data that can be read by the emulator
-> *	Memory[0x1FC00700] location there is a 31 byte null terminated name.		
-> *	Memory[0x1FC007BC] location there is a 4 byte value that defines 
-> *			how many CPU cycles to execute. 
+* All ROM locations 0x1FC00640 - 0x1FC007BF RESERVED
+* Memory location 0x1FC00640 to 0x1FC006FF is for storing internal test data
+* Memory location 0x1FC00700 to 0x1FC007BF is for data that can be read by the emulator
+*	Memory[0x1FC00700] location there is a 31 byte null terminated name.		
+*	Memory[0x1FC007BC] location there is a 4 byte value that defines how many CPU cycles to execute. 
 
 ```
 Example:
@@ -52,29 +51,35 @@ for (int idx = 0; idx < instructionCount; idx++)
 {
 	Step();
 	PC += 4;
-}```
+}
+```
 
-The remaining challenge is to "bootstrap" accurate tests.
-	Each test set is for one MIPS ISA, using only verified instructions. The 
-tests will use instructions from "lower" ISA's. For example MIPS III tests
-can and will use instructions that were already verified in MIPS I & II tests.
+## The remaining challenge is to "bootstrap" accurate tests.  
+The following guidelines apply:  
+1. Successfully execute the following tests first  
+   1. MIPS_I_TestTheTest  
+   2. MIPS_I_01.bin  
+   3. MIPS_I_02.bin  
+2. At this point most other ISA tests will work.
+3. Inside each ISA the tests must be done in sequence.  
 
-	The goal is to be able to run official code as quickly as possible, in the 
-case of N64 emulation it's recommended to get the PIF code running. Emulating
-other MIPS CPU's may use a different set or sequence of these tests.
+This may sound confusing but here is an example for the N64
+1. MIPS_I_TestTheTest.bin
+2. MIPS_I_01.bin
+3. MIPS_I_02.bin
+4. MIPS_II_01.bin
+5. MIPS_I_03.bin
+6. MIPS_II_02.bin
+7. MIPS_I_04.bin		
+
+Emulating other MIPS CPU's may use a different set or sequence of these tests.
+The goal is to be able to run official code as quickly as possible, in the 
+case of N64 emulation it's recommended to get the PIF code running. 
+
+The final step for PIF code to run is verifying the Environment:
+8. Environment_PIF.bin
 	
-	Test Sequence for N64 PIF:
-		0	MIPS_I_TestTheTest.bin
-		1	MIPS_I_01.bin
-		2	MIPS_I_02.bin
-		3	MIPS_II_01.bin
-		4	MIPS_I_03.bin
-		5	MIPS_II_02.bin
-		6	MIPS_I_04.bin		
-		7	Environment_PIF.bin
-	Result: The PIF code should execute succesfully
-	
-"Test The Tests"
+## "Test The Tests"
 	Code is only as accurate and reliable as it's tests. These first tests are 
 very simple and slowly build on each other. The later tests may still fluctuate
 but the explanation below would be similar for all of the tests in this series.
