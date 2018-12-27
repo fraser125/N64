@@ -118,7 +118,7 @@ constant Status($0C)		// 12
 constant SR($0C)			// 12
 constant Cause($0D)			// 13
 constant EPC($0E)			// 14
-constant PRevID($0F)		// 15
+constant PRId($0F)		// 15
 constant Config($10)		// 16
 constant LLAddr($11)		// 17
 constant WatchLo($12)		// 18
