@@ -12,7 +12,13 @@ SYSCALL instruction.
 
 Since we are operating "inside" the machine we take just a couple of liberties. 
 Instead of one big "code" value. Parse the SYSCALL instruction as a Register 
-Type. The following values are then available.
+Type. The following values are then available. 
+
+NOTE: There are a couple of small reasons that these tests
+<b>Will NOT run on Hardware</b>
+This is a decision that was made. Where appropriate the resulting values are 
+verified on hardware, but this code takes some liberties that don't work on hardware.  
+For example reading from PIF memory after boot.
 
 * RS = MIPS ISA (i.e. 1, 2, 3, 4 aka I, II, III, IV)
 * RT = P or F for Pass or Fail
