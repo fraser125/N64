@@ -38,8 +38,8 @@ continue5:
 	
 	
 //# Test beq False
-//# Test addi instruction
-	addi t0, r0, 1	
+//# Test addiu instruction
+	addiu t0, r0, 1	
 	beq t0, r0, bad6
 	nop
 	beq r0, r0, good6
@@ -54,7 +54,7 @@ good6:
 	syscallUTE(1, 0, 6, 'P')
 continue7:
 
-//# Test addi instruction
+//# Test addiu instruction
 	addiu t0, r0, 1
 	addiu t1, r0, 1
 	beq t0, t1, good7
@@ -67,7 +67,7 @@ good7:
 	syscallUTE(1, 0, 7, 'P')
 continue8:
 	
-//# Test addi negative numbers
+//# Test addiu negative numbers
 	addiu t0, r0, -2
 	addiu t1, r0, -2
 	beq t0, t1, good8
@@ -80,7 +80,7 @@ good8:
 	syscallUTE(1, 0, 8, 'P')
 continue9:
 	
-//# Test addi negative numbers
+//# Test addiu negative numbers
 	addiu t0, r0, -1
 	addiu t1, r0, -1
 	addiu t0, t0, 1
@@ -97,8 +97,8 @@ good9:
 continue10:
 	
 //# Test addiu instruction
-	addi t0, r0, 1
-	addi t1, r0, 1
+	addiu t0, r0, 1
+	addiu t1, r0, 1
 	beq t0, t1, good10
 	nop
 bad10:
@@ -109,9 +109,9 @@ good10:
 	syscallUTE(1, 0, 10, 'P')
 continue11:
 	
-//# Test addi negative numbers
-	addi t0, r0, -2
-	addi t1, r0, -2
+//# Test addiu negative numbers
+	addiu t0, r0, -2
+	addiu t1, r0, -2
 	beq t0, t1, good11
 	nop
 bad11:
@@ -121,11 +121,11 @@ good11:
 	syscallUTE(1, 0, 11, 'P')
 continue12:
 	
-//# Test addi negative numbers
-	addi t0, r0, -1
-	addi t1, r0, -1
-	addi t0, t0, 1
-	addi t1, t1, 1
+//# Test addiu negative numbers
+	addiu t0, r0, -1
+	addiu t1, r0, -1
+	addiu t0, t0, 1
+	addiu t1, t1, 1
 	
 	beq t0, t1, good12
 	nop
