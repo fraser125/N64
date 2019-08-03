@@ -1,0 +1,147 @@
+Test the Test
+	syscall - 
+		Pass, 
+		Fail
+	nop - Doesn't crash
+	beq - 
+		True, 
+		False, 
+		Negative Offset
+		TODO: Delay Slot
+	addi - 
+		+1, 
+		-2, 
+		-1 + -1, 
+		TODO: +2 + -1
+	addiu -  
+		+1, 
+		-2, 
+		-1 + -1, 
+		TODO: +2 + -1
+MIPS I 01
+	mthi: 
+		register move
+	mfhi: 
+		register move
+	mtlo: 
+		register move
+	mflo: 
+		register move
+	add: 
+		simple register addition
+		TODO: Negative Numbers
+	addu: simple register addition
+		TODO: Negative Numbers
+	srl: 
+		simple shift right
+	or: 
+		simple or masking
+	mtc0: 
+		register move
+	mfc0: 
+		register move
+	lui: 
+		correct value, 
+		Low 16 bits are zero
+	ori: simple immediate masking, zero extended
+	lw: 
+		Positive Offset
+		Negative Offset
+	andi: simple and immediate masking, zero extended
+	sw:
+		Positive Offset
+		Negative Offset
+	bne: True, False
+		TODO: Negative offset
+		TODO: Delay Slot
+	jr: simple Jump
+		TODO: Negative offset
+		TODO: Alt Syntax	
+		TODO: Delay Slot
+	bgezal:
+		True
+		False
+		Negative Offset
+		TODO: Positive Offset
+		Delay Slot
+	mult:
+		Small Values
+		Max Values
+	multu:
+	xor:
+	subu:
+	sltu:
+	sllv:
+	srlv:
+	
+	
+TODO:
+	sub:
+	
+	bgez:
+	blez:
+	slt:
+	slti:
+	sltiu:
+	
+	jal:
+	jalr:
+
+	and:
+	sll:
+	sra:
+	srav:
+	srl:
+	
+	
+	lb:
+	lbu:
+	lh:
+	lhu:
+	lw:
+	lwl:
+	lwr:
+	sb:	
+	sh:
+	sw:
+	swl:
+	swr:
+	break:
+COP0:
+	cache:
+	ldc0:
+	lwc0:
+	swc0:
+	tlbp: // Not sure how to test, no direct side effects
+	tlbr: // Not sure how to test, no direct side effects
+	sync: // Not sure how to test, no direct side effects
+COP1:
+	ldc1:
+	lwc1:
+	mfc1:
+	mtc1:
+	swc1:
+COP2:
+	ldc2:
+	lwc2:
+	mfc2:
+	mtc2:
+	swc2:
+MIPS II	
+	beql: 
+	bnel:
+	bltzl:
+	blezl:
+	tgei:
+	ll (LL):
+MIPS III
+	daddi:
+	dsll:
+	dsra:
+	dsrl:
+	sd:
+	scd:
+	dmfc0:
+MIPS IV ????
+	mad
+	

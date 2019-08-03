@@ -1,0 +1,63 @@
+arch n64.cpu
+endian msb
+output MIPS_I___01.n64, create
+fill 1052672
+
+origin $00000000
+base $80000000
+	include "../LIB/N64_UTE.INC"
+	include "../LIB/N64_UTE_SYSCALL.INC" // Include 64 Byte Header
+	include "../LIB/N64_GFX.INC"
+	include "../LIB/COLORS16.INC"
+	include "../LIB/N64_IPL_FONT.INC"
+
+	include "../LIB/N64_HEADER.S" // Include 64 Byte Header
+	insert "../LIB/N64_BOOTCODE.BOOT" // Include 4032 Byte Boot Code
+Start:
+	N64_INIT() // Run N64 Initialisation Routine
+variable video_buffer($A0100000)
+	//ScreenNTSC(640, 480, BPP16, video_buffer) // Screen NTSC: 640x480, 16BPP, DRAM Origin $A0100000
+	//LoadExceptionHandler()
+	
+	variable font_good($8008'0000)
+	font_init16(WHITE, SEA_GREEN, font_good)
+	
+variable font_fail($8008'5000)
+	font_init16(WHITE, RED, font_fail)
+
+variable font_white($8008'A000)
+	font_init16(WHITE, 0x01, font_white)
+	
+variable font_blue($8008'F000)
+	font_init16(STEEL_BLUE, 0x01, font_blue)
+
+	include "./MIPS_I___01.S"
+	
+Loop:
+	j Loop
+	nop
+	
+	
+include "../LIB/N64_IPL_FONT.S"
+	
+map 'A',0,26	// A-Z	
+map 'a',0,26	// a-z	
+map '0',26,10	// 0-9	
+map '!',36,3	// ! " #	
+//map '\'', 39, 1	// '	
+map '*', 40, 6	// * + , - . /	
+map ':', 46, 1	// : 	
+map '=', 47, 1	// = 	
+map '?',48, 2	// ? @
+map ' ',51, 1	// space
+testtext:
+db "the quick brown fox jumped over"
+myname:
+db "my name is fraser125"
+pass:
+db "pass"
+fail:
+db "fail"
+map 0, 0, 256
+
+include "../LIB/N64_UTE_SYSCALL.S" // Include 64 Byte Header

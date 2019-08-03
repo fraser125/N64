@@ -35,7 +35,7 @@ good2:
 	nop
 bad3:
 	syscallUTE(1, 1, 3, 'F')
-	b continue8
+	b continue4
 	nop
 good3:
 	syscallUTE(1, 1, 3, 'P')
@@ -95,9 +95,9 @@ continue7:
 	addiu t2, r0, 0x7000
 	beq t1, t2, good21
 	nop
-bad21:
+bad7:
 	syscallUTE(1, 1, 21, 'F')
-good21:
+good7:
 	syscallUTE(1, 1, 21, 'P')
 continue22:
 
@@ -243,9 +243,9 @@ good20:
 	add t3, t1, t2
 	beq t0, t3, good3
 	nop
-bad3:
+bad21:
 	syscallUTE(1, 1, 3, 'F')
-good3:
+good21:
 	syscallUTE(1, 1, 3, 'P')
 
 //# Test addu
@@ -255,9 +255,9 @@ good3:
 	add t3, t1, t2
 	beq t0, t3, good4
 	nop
-bad4:
+bad22:
 	syscallUTE(1, 1, 4, 'F')
-good4:
+good22:
 	syscallUTE(1, 1, 4, 'P')
 
 //# Test srl
@@ -266,9 +266,9 @@ good4:
 	addiu t1, r0, 0x7800
 	beq t0, t1, good5
 	nop
-bad5:
+bad23:
 	syscallUTE(1, 1, 5, 'F')
-good5:
+good23:
 	syscallUTE(1, 1, 5, 'P')
 	
 //# Test or
@@ -278,9 +278,9 @@ good5:
 	or t0, t0, t1
 	beq t0, t2, good6
 	nop
-bad6:
+bad24:
 	syscallUTE(1, 1, 6, 'F')
-good6:
+good24:
 	syscallUTE(1, 1, 6, 'P')
 	
 //# Test sw negative offset
