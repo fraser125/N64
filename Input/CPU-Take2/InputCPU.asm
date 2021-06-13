@@ -8,7 +8,6 @@ origin $00000000
 base $80000000 // Entry Point Of Code
 include "LIB/N64.INC" // Include N64 Definitions
 include "LIB/N64_GFX.INC" // Include Graphics Macros
-include "LIB/N64_INPUT.INC" // Include Input Macros
 include "LIB/N64_HEADER.ASM" // Include 64 Byte Header & Vector Table
 insert "LIB/N64_BOOTCODE.BIN" // Include 4032 Byte Boot Code
 
